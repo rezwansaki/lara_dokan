@@ -241,6 +241,18 @@
                     <p>Salary Provide</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{url('/employee/salarydue')}}" class="nav-link pl-4">
+                    <i class="nav-icon fas fa-user-plus"></i>
+                    <p>Salary Due</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('/employee/salaryadvance')}}" class="nav-link pl-4">
+                    <i class="nav-icon fas fa-user-plus"></i>
+                    <p>Advance Salary</p>
+                  </a>
+                </li>
               </ul>
             </li>
             <!-- /Salary navigation -->

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\User;
 use App\Models\Salary;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
@@ -154,4 +156,35 @@ class SalaryController extends Controller
             return redirect()->back()->with($notification);
         }
     } // /salary delete 
+
+    //check salary due
+    public function salaryDue()
+    {
+        // $year = date('Y', strtotime(now())); //get current year
+        // $month = date('m', strtotime('-1 month')); //to get last month in month code such as 11 for November 
+        // $year = date('Y', strtotime('-1 month')); //to get last month in month code such as 11 for November 
+        // $salary_due_of_the_current_year = DB::table('salaries')
+        //     ->join('employees', 'salaries.emp_id', 'employees.id')
+        //     ->select('salaries.*', 'employees.name')
+        //     ->where('month', '=', $month)
+        //     ->where('year', '=', $year)
+        //     ->get();
+        // return $salary_due_of_the_current_year;
+        $employee = Employee::all();
+        return view('salary.salarydue', compact('employee'));
+    } // /check salary due
+
+    //check salary advance
+    public function salaryAdvance()
+    {
+        $year = date('Y', strtotime(now())); //get current year
+        $month = date('m', strtotime('+1 month')); //to get last month in month code such as 11 for November 
+        $salary_due_of_the_current_year = DB::table('salaries')
+            ->join('employees', 'salaries.emp_id', 'employees.id')
+            ->select('salaries.*', 'employees.name')
+            ->where('month', '=', $month)
+            ->where('year', '=', $year)
+            ->get();
+        return view('salary.salaryAdvance', compact('salary_due_of_the_current_year'));
+    } // /check salary advance
 }

@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Salary Paid Information</h1>
+                <h1 class="m-0 text-dark">Salary Due (Current Year): '{{date('Y', strtotime(now()))}}'</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -16,7 +16,7 @@
 <div class="col-sm-12">
     <div class="card card-primary card-outline">
         <div class="card-header">
-            <h5>Total Salary: <span class="right badge badge-pill badge-info">{{number_format($total_salary_paid, 2)}}</span> tk. has been paid.
+            <h5>Total Salary Due: <span class="right badge badge-pill badge-info">{{number_format((float)$salary_due_of_the_current_year->sum('salary'), 2)}}</span> tk.
                 <span class="float-right badge badge-pill badge-primary text-sm">{{date('d-M-Y h:i a', strtotime(now()))}}</span>
             </h5>
         </div>
@@ -29,20 +29,18 @@
                         <th>Sal_ID</th>
                         <th>Emp_ID</th>
                         <th>Name</th>
+                        <th>Salary</th>
                         <th>Month</th>
                         <th>Year</th>
-                        <th>Salary Paid</th>
-                        <th>Salary Paid</th>
-                        <th>Salary Edited</th>
-                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="text-sm">
-                    @foreach($salary_details as $salary)
+                    @foreach($salary_due_of_the_current_year as $salary)
                     <tr>
                         <td class="text-center">{{$salary->id}}</td>
                         <td class="text-center">{{$salary->emp_id}}</td>
                         <td>{{App\Models\Employee::find($salary->emp_id)->name}}</td>
+                        <td>{{App\Models\Employee::find($salary->emp_id)->salary}}</td>
                         @php
                         $monthNum = $salary->month;
                         $dateObj = DateTime::createFromFormat('!m', $monthNum);
@@ -50,19 +48,6 @@
                         @endphp
                         <td>{{$monthName}}</td>
                         <td>{{$salary->year}}</td>
-                        <td>
-                            <h6>
-                                <span class="right badge badge-pill badge-warning">
-                                    {{number_format($salary->salary,2)}}
-                                </span>
-                            </h6>
-                        </td>
-                        <td>{{date_format($salary->created_at,'d-M-Y h:i a')}}</td>
-                        <td>{{date_format($salary->updated_at,'d-M-Y h:i a')}}</td>
-                        <td>
-                            <a href="/employee/salaryedit/{{$salary->id}}" class="btn btn-primary btn-xs">Edit</a>
-                            <a href="/employee/salarydelete/{{$salary->id}}" class="btn btn-danger btn-xs" id="delete">Delete</a>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -71,7 +56,7 @@
 
             <!-- pagination -->
             <div class="col-md-12 mt-2 mb-4">
-                {{ $salary_details->links() }}
+
             </div>
             <!-- /end of pagination -->
         </div>

@@ -61,3 +61,5 @@ Route::get('/employee/salarydetails', [SalaryController::class, 'salaryDetails']
 Route::get('/employee/salaryedit/{id}', [SalaryController::class, 'salaryEdit']); //show form to edit salary information 
 Route::post('/employee/salaryupdate/{id}', [SalaryController::class, 'salaryUpdate']); //call update salary method 
 Route::get('/employee/salarydelete/{id}', [SalaryController::class, 'salaryDelete']); //call delete salary method 
+Route::get('/employee/salarydue', [SalaryController::class, 'salaryDue']); //show due salary of the current year 
+Route::get('/employee/salaryadvance', [SalaryController::class, 'salaryAdvance']); //show due salary of the current year 

@@ -49,8 +49,9 @@
 
     <div class="card card-primary card-outline">
         <div class="card-header">
-            <h5>Total Users: {{$total_users}}</h5>
-            <span class="badge badge-pill badge-primary">{{date('d-M-Y h:i a', strtotime(now()))}}</span>
+            <h5>Total Users: {{$total_users}}
+                <span class="float-right badge badge-pill badge-primary text-sm">{{date('d-M-Y h:i a', strtotime(now()))}}</span>
+            </h5>
         </div>
         <!-- main card-body -->
         <div class="card-body">

@@ -100,7 +100,7 @@ class EmployeeController extends Controller
         $all_roles = Role::all();
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             //superadmin can access
-            $all_employees = Employee::paginate(8);
+            $all_employees = Employee::orderby('id', 'desc')->paginate(8);
             //get all employees
             $total_employees = Employee::all();
             return view('employee.allemployee', compact('all_employees', 'total_employees'));

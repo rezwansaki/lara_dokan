@@ -60,3 +60,4 @@ Route::post('/employee/salaryprovide', [SalaryController::class, 'salaryProvide'
 Route::get('/employee/salarydetails', [SalaryController::class, 'salaryDetails']); //show all employees with their salary 
 Route::get('/employee/salaryedit/{id}', [SalaryController::class, 'salaryEdit']); //show form to edit salary information 
 Route::post('/employee/salaryupdate/{id}', [SalaryController::class, 'salaryUpdate']); //call update salary method 
+Route::get('/employee/salarydelete/{id}', [SalaryController::class, 'salaryDelete']); //call delete salary method 

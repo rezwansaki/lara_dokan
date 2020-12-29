@@ -16,14 +16,14 @@
 <div class="col-sm-12">
     <div class="card card-primary card-outline">
         <div class="card-header">
-            <h5 class="m-0">Total Salary: <span class="right badge badge-pill badge-info">{{number_format($total_salary_paid, 2)}}</span> tk. has been paid.</h5>
-            <p>{{date('d-m-Y h:i:s a', strtotime($salary_details[3]->created_at))}}</p>
+            <h5>Total Salary: <span class="right badge badge-pill badge-info">{{number_format($total_salary_paid, 2)}}</span> tk. has been paid.</h5>
+            <span class="badge badge-pill badge-primary">{{date('d-M-Y h:i a', strtotime(now()))}}</span>
         </div>
         <!-- main card-body -->
         <div class="card-body">
             <!-- Table Start -->
-            <table id="example2" class="table table-bordered table-hover">
-                <thead>
+            <table id="example2" class="table table-bordered table-hover text-sm">
+                <thead class="table-dark">
                     <tr>
                         <th>Sal_ID</th>
                         <th>Emp_ID</th>
@@ -39,8 +39,8 @@
                 <tbody class="text-sm">
                     @foreach($salary_details as $salary)
                     <tr>
-                        <td>{{$salary->id}}</td>
-                        <td>{{$salary->emp_id}}</td>
+                        <td class="text-center">{{$salary->id}}</td>
+                        <td class="text-center">{{$salary->emp_id}}</td>
                         <td>{{App\Models\Employee::find($salary->emp_id)->name}}</td>
                         <td>{{$salary->month}}</td>
                         <td>{{$salary->year}}</td>
@@ -55,7 +55,7 @@
                         <td>{{date_format($salary->updated_at,'d-M-Y h:i a')}}</td>
                         <td>
                             <a href="/employee/salaryedit/{{$salary->id}}" class="btn btn-primary btn-xs">Edit</a>
-                            <a href="#" class="btn btn-danger btn-xs" id="delete">Delete</a>
+                            <a href="/employee/salarydelete/{{$salary->id}}" class="btn btn-danger btn-xs" id="delete">Delete</a>
                         </td>
                     </tr>
                     @endforeach

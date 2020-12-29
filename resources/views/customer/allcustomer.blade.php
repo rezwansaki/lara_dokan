@@ -17,13 +17,14 @@
 <div class="col-sm-12">
     <div class="card card-primary card-outline">
         <div class="card-header">
-            <h5 class="m-0">Total Customers: {{count($total_customers)}}</h5>
+            <h5>Total Customers: {{count($total_customers)}}</h5>
+            <span class="badge badge-pill badge-primary">{{date('d-M-Y h:i a', strtotime(now()))}}</span>
         </div>
         <!-- main card-body -->
         <div class="card-body">
             <!-- Table Start -->
-            <table id="example2" class="table table-bordered table-hover">
-                <thead>
+            <table id="example2" class="table table-bordered table-hover text-sm">
+                <thead class="table-dark text-center">
                     <tr>
                         <th>Cust_ID</th>
                         <th>Cust_Name</th>
@@ -36,7 +37,7 @@
                 <tbody class="text-sm">
                     @foreach($all_customers as $customer)
                     <tr>
-                        <td>{{$customer->id}}</td>
+                        <td class="text-center">{{$customer->id}}</td>
                         <td><a href="{{$customer->id}}">{{$customer->name}}</a></td>
                         <td>{{$customer->contact}}</td>
                         <td>{{$customer->email}}</td>

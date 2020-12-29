@@ -16,14 +16,15 @@
 <div class="col-sm-12">
     <div class="card card-primary card-outline">
         <div class="card-header">
-            <h5 class="m-0">Total Employees: {{count($total_employees)}}</h5>
+            <h5>Total Employees: {{count($total_employees)}}</h5>
+            <span class="badge badge-pill badge-primary">{{date('d-M-Y h:i a', strtotime(now()))}}</span>
         </div>
         <!-- main card-body -->
         <div class="card-body">
             <!-- Table Start -->
-            <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                    <tr>
+            <table id="example2" class="table table-bordered table-hover text-sm">
+                <thead class="table-dark">
+                    <tr class="text-center">
                         <th>Emp_ID</th>
                         <th>Name</th>
                         <th>Gender</th>
@@ -33,24 +34,32 @@
                         <th>Salary</th>
                         <th>User_ID</th>
                         <th>Role</th>
+                        <th>Join Date</th>
+                        <th>Last Update</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody class="text-sm">
+                <tbody">
                     @foreach($all_employees as $employee)
                     <tr>
-                        <td>{{$employee->id}}</td>
+                        <td class="text-center">{{$employee->id}}</td>
                         <td>{{$employee->name}}</td>
                         <td>{{$employee->gender}}</td>
                         <td>{{$employee->address}}</td>
                         <td>{{$employee->district}}</td>
                         <td>{{$employee->phone}}</td>
-                        <td>{{$employee->salary}}</td>
-                        <td>{{$employee->user_id}}</td>
+                        <td class="text-right">
+                            <h6>
+                                <span class="right badge badge-pill badge-warning">
+                                    {{number_format($employee->salary,2)}}
+                                </span>
+                            </h6>
+                        </td>
+                        <td class="text-center">{{$employee->user_id}}</td>
                         <td>
                             @foreach(App\Models\User::find($employee->user_id)->getRoleNames() as $userrole)
                             @if($userrole == 'superadmin')
-                            <span class="right badge badge-pill badge-danger">
+                            <span class=" right badge badge-pill badge-danger">
                                 {{ $userrole }}
                             </span>
                             @endif
@@ -76,13 +85,15 @@
                             @endif
                             @endforeach
                         </td>
+                        <td>{{date_format($employee->created_at,'d-M-Y h:i a')}}</td>
+                        <td>{{date_format($employee->updated_at,'d-M-Y h:i a')}}</td>
                         <td>
                             <a href="/user/employee/edit/{{$employee->id}}" class="btn btn-primary btn-xs btn-block">Edit</a>
                             <a href="/user/employee/delete/{{$employee->id}}" class="btn btn-danger btn-xs btn-block" id="delete">Delete</a>
                         </td>
                     </tr>
                     @endforeach
-                </tbody>
+                    </tbody>
             </table>
             <!-- /Table End -->
 

@@ -49,13 +49,14 @@
 
     <div class="card card-primary card-outline">
         <div class="card-header">
-            <h5 class="m-0">Total Users: {{$total_users}}</h5>
+            <h5>Total Users: {{$total_users}}</h5>
+            <span class="badge badge-pill badge-primary">{{date('d-M-Y h:i a', strtotime(now()))}}</span>
         </div>
         <!-- main card-body -->
         <div class="card-body">
             <!-- Table Start -->
-            <table id="example2" class="table table-bordered table-hover">
-                <thead>
+            <table id="example2" class="table table-bordered table-hover text-sm">
+                <thead class="table-dark text-center">
                     <tr>
                         <th>User_ID</th>
                         <th>Name</th>
@@ -67,10 +68,10 @@
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="text-sm">
+                <tbody>
                     @foreach($all_users as $user)
                     <tr>
-                        <td>{{$user->id}}</td>
+                        <td class="text-center">{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->contact}}</td>
                         <td>{{$user->email}}</td>

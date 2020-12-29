@@ -129,4 +129,29 @@ class SalaryController extends Controller
 
         return redirect()->back();
     } // /salary update
+
+    //salary delete 
+    public function salaryDelete($id)
+    {
+        $auth_user = Auth::user();
+        if ($auth_user->hasRole(['superadmin', 'admin'])) {
+            $salary = Salary::find($id);
+            $salary->delete();
+            //Toaster Message 
+            $notification = array(
+                'message' => 'Delete Successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect('/employee/salarydetails')->with($notification);
+        } else {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+    } // /salary delete 
 }

@@ -6,6 +6,7 @@ use DateTime;
 use App\Models\User;
 use App\Models\Salary;
 use App\Models\Employee;
+use App\Models\SalaryAdvance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
@@ -17,7 +18,9 @@ class SalaryController extends Controller
     public function index()
     {
         $all_employees = Employee::all();
-        return view('salary.salary', compact('all_employees'));
+        $previous_month = date('F', strtotime("last day of previous month")); //to show the last day of the previous month
+        $current_year = date('Y', strtotime(now())); //to show the current year 
+        return view('salary.salary', compact('all_employees', 'previous_month', 'current_year'));
     }
 
     //Salary provide
@@ -157,34 +160,46 @@ class SalaryController extends Controller
         }
     } // /salary delete 
 
-    //check salary due
-    public function salaryDue()
-    {
-        // $year = date('Y', strtotime(now())); //get current year
-        // $month = date('m', strtotime('-1 month')); //to get last month in month code such as 11 for November 
-        // $year = date('Y', strtotime('-1 month')); //to get last month in month code such as 11 for November 
-        // $salary_due_of_the_current_year = DB::table('salaries')
-        //     ->join('employees', 'salaries.emp_id', 'employees.id')
-        //     ->select('salaries.*', 'employees.name')
-        //     ->where('month', '=', $month)
-        //     ->where('year', '=', $year)
-        //     ->get();
-        // return $salary_due_of_the_current_year;
-        $employee = Employee::all();
-        return view('salary.salarydue', compact('employee'));
-    } // /check salary due
-
-    //check salary advance
+    //salary advance 
     public function salaryAdvance()
     {
-        $year = date('Y', strtotime(now())); //get current year
-        $month = date('m', strtotime('+1 month')); //to get last month in month code such as 11 for November 
-        $salary_due_of_the_current_year = DB::table('salaries')
-            ->join('employees', 'salaries.emp_id', 'employees.id')
-            ->select('salaries.*', 'employees.name')
-            ->where('month', '=', $month)
-            ->where('year', '=', $year)
-            ->get();
-        return view('salary.salaryAdvance', compact('salary_due_of_the_current_year'));
-    } // /check salary advance
+        $all_employees = Employee::all();
+        return view('salary.salaryadvance', compact('all_employees'));
+    } // /salary advance
+
+    public function salaryAdvanceDone(Request $request)
+    {
+        $emp_id = $request->employee;
+        $employee = Employee::find($emp_id); //get all data of that employee 
+        $salary_advance = $employee->salary; //actual salary of that employee 
+        $today = date('d-F-Y', strtotime(now())); //current date 
+        $reason = $request->reason; //reason of that load (advance means loan)
+        $loan_paid_Or_unpaid = 'unpaid'; //'paid','unpaid','' 
+
+        //check if this employee's loan is unpaid
+        $loan_status = SalaryAdvance::where('emp_id', $emp_id)->where('loan', 'unpaid')->get();
+        if (!$loan_status || count($loan_status) < 1) {
+            //if this employee paid all loan then 
+            $salaryadvance = new SalaryAdvance;
+            $salaryadvance->emp_id = $emp_id;
+            $salaryadvance->salary_advance = $salary_advance;
+            $salaryadvance->date = $today;
+            $salaryadvance->reason = $reason;
+            $salaryadvance->loan = $loan_paid_Or_unpaid;
+            $salaryadvance->save();
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'Advance Salary has been paid successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        } else {
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'The previous loan of this employee has not been repaid.!',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    }
 }

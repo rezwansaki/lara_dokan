@@ -28,30 +28,18 @@
                     <div class="form-group">
                         <label for="username">Name</label>
                         <input type="text" name="username" class="form-control" id="username" placeholder="name" required>
-                        <!-- @error('name')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror -->
                     </div>
                     <div class="form-group">
                         <label for="usercontact">Contact</label>
                         <input type="text" name="usercontact" class="form-control" id="usercontact" placeholder="contact" required>
-                        <!-- @error('contact')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror -->
                     </div>
                     <div class="form-group">
                         <label for="useremail">Email</label>
                         <input type="text" name="useremail" class="form-control" id="useremail" placeholder="email" required>
-                        <!-- @error('email')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror -->
                     </div>
                     <div class="form-group">
                         <label for="userpassword">Password</label>
                         <input type="password" name="userpassword" class="form-control" id="userpassword" placeholder="password" required>
-                        <!-- @error('password')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror -->
                     </div>
 
                     <!-- User Roles -->

@@ -230,7 +230,7 @@ class SalaryController extends Controller
         $loan_amount = $salary_advance->salary_advance;
         $loan_amount_update = $loan_amount - $paid_amount;
         $loan_status = $salary_advance->loan;
-        if ($loan_amount_update < 1) {
+        if ($loan_amount_update <= 0) {
             $loan_status = 'paid';
         } else {
             $loan_status = 'unpaid';

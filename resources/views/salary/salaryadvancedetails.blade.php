@@ -16,7 +16,13 @@
 <div class="col-sm-12">
     <div class="card card-primary card-outline">
         <div class="card-header">
-            <h5>Total Salary Advance: <span class="right badge badge-pill badge-danger">{{number_format($total_salary_advance_paid, 2)}}</span> tk. has been paid.
+            <h5>Total Salary Advance:
+                @if($total_salary_advance_paid > 0)
+                <span class="right badge badge-pill badge-danger">{{number_format($total_salary_advance_paid, 2)}}</span>
+                @else
+                <span class="right badge badge-pill badge-success">{{number_format($total_salary_advance_paid, 2)}}</span>
+                @endif
+                tk. has been paid.
                 <span class="float-right badge badge-pill badge-primary text-sm">{{date('d-M-Y h:i a', strtotime(now()))}}</span>
             </h5>
         </div>
@@ -44,9 +50,15 @@
                         <td>{{App\Models\Employee::find($salary->emp_id)->name}}</td>
                         <td>
                             <h6>
+                                @if($salary->salary_advance > 0)
                                 <span class="right badge badge-pill badge-warning">
                                     {{number_format($salary->salary_advance,2)}}
                                 </span>
+                                @else
+                                <span class="right badge badge-pill badge-success">
+                                    {{number_format($salary->salary_advance,2)}}
+                                </span>
+                                @endif
                             </h6>
                         </td>
                         <td class="text-center">{{$salary->date}}</td>

@@ -22,7 +22,7 @@
         <!-- main card-body -->
         <div class="card-body">
             <!-- Table Start -->
-            <table id="example2" class="table table-bordered table-hover">
+            <table id="example2" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>

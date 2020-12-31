@@ -167,6 +167,7 @@ class SalaryController extends Controller
         return view('salary.salaryadvance', compact('all_employees'));
     } // /salary advance
 
+    //salary advance method
     public function salaryAdvanceDone(Request $request)
     {
         $emp_id = $request->employee;
@@ -201,5 +202,50 @@ class SalaryController extends Controller
             );
             return redirect()->back()->with($notification);
         }
-    }
+    } // /salary advance method
+
+    //salary advance details
+    public function salaryAdvanceDetails()
+    {
+        $salary_advance_details = SalaryAdvance::orderBy('id', 'desc')->paginate(8);
+        $total_salary_advance_paid = (float)SalaryAdvance::all()->sum('salary_advance');
+        return view('salary.salaryadvancedetails', compact('salary_advance_details', 'total_salary_advance_paid'));
+    } // /salary advance details
+
+    //salary loan pay by the employee
+    public function salaryLoanPay($id)
+    {
+        $salary_advance = SalaryAdvance::find($id);
+        return view('salary.salaryloanpay', compact('salary_advance'));
+    } // /salary loan pay by the employee 
+
+    //salary loan pay by the empoyee done
+    public function salaryLoanPayDone(Request $request, $id)
+    {
+        $today = date('d-F-Y', strtotime(now()));
+        $salary_advance = SalaryAdvance::find($id);
+        $paid_amount = $request->pay;
+        $emp_id = $salary_advance->emp_id;
+        $reason = $salary_advance->reason;
+        $loan_amount = $salary_advance->salary_advance;
+        $loan_amount_update = $loan_amount - $paid_amount;
+        $loan_status = $salary_advance->loan;
+        if ($loan_amount_update < 1) {
+            $loan_status = 'paid';
+        } else {
+            $loan_status = 'unpaid';
+        }
+        $salary_advance->emp_id =  $emp_id;
+        $salary_advance->salary_advance = (float)$loan_amount_update;
+        $salary_advance->date = $today;
+        $salary_advance->reason =  $reason;
+        $salary_advance->loan = $loan_status;
+        $salary_advance->save();
+        //Toaster Message show, when user create fail
+        $notification = array(
+            'message' => 'Advance Salary has been update successfully!',
+            'alert-type' => 'success'
+        );
+        return redirect('/employee/salaryadvancedetails')->with($notification);
+    } // /salary loan pay by the empoyee done
 }

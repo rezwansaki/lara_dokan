@@ -56,7 +56,7 @@
         <!-- main card-body -->
         <div class="card-body">
             <!-- Table Start -->
-            <table id="example2" class="table table-bordered table-hover text-sm">
+            <table id="example2" class="table table-bordered text-sm">
                 <thead class="table-dark text-center">
                     <tr>
                         <th>User_ID</th>

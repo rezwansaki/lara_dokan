@@ -61,6 +61,8 @@ Route::get('/employee/salarydetails', [SalaryController::class, 'salaryDetails']
 Route::get('/employee/salaryedit/{id}', [SalaryController::class, 'salaryEdit']); //show form to edit salary information 
 Route::post('/employee/salaryupdate/{id}', [SalaryController::class, 'salaryUpdate']); //call update salary method 
 Route::get('/employee/salarydelete/{id}', [SalaryController::class, 'salaryDelete']); //call delete salary method 
-
 Route::get('/employee/salaryadvance', [SalaryController::class, 'salaryAdvance']);
-Route::post('/employee/salaryadvance', [SalaryController::class, 'salaryAdvanceDone']);
+Route::post('/employee/salaryadvance', [SalaryController::class, 'salaryAdvanceDone']); //call the method 
+Route::get('/employee/salaryadvancedetails', [SalaryController::class, 'salaryAdvanceDetails']);
+Route::get('/employee/salaryloanpay/{id}', [SalaryController::class, 'salaryLoanPay']); //load paid by the employee 
+Route::post('/employee/salaryloanpay/{id}', [SalaryController::class, 'salaryLoanPayDone']); //call the method of load paid by the employee 

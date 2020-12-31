@@ -237,14 +237,20 @@
                 </li>
                 <li class="nav-item">
                   <a href="{{url('/employee/salary')}}" class="nav-link pl-4">
-                    <i class="nav-icon fas fa-user-plus"></i>
+                    <i class="nav-icon fas fa-hand-holding-usd"></i>
                     <p>Salary Provide</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="{{url('/employee/salaryadvance')}}" class="nav-link pl-4">
-                    <i class="nav-icon fas fa-user-plus"></i>
+                    <i class="nav-icon fas fa-hand-holding-usd"></i>
                     <p>Salary Advance</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('/employee/salaryadvancedetails')}}" class="nav-link pl-4">
+                    <i class="nav-icon fas fa-hand-holding-usd"></i>
+                    <p>Salary Advance Details</p>
                   </a>
                 </li>
               </ul>

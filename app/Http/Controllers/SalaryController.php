@@ -240,7 +240,11 @@ class SalaryController extends Controller
         $salary_advance->date = $today;
         $salary_advance->reason =  $reason;
         $salary_advance->loan = $loan_status;
-        $salary_advance->save();
+        if ($loan_amount_update <= 0) {
+            $salary_advance->delete();
+        } else {
+            $salary_advance->save();
+        }
         //Toaster Message show, when user create fail
         $notification = array(
             'message' => 'Advance Salary has been update successfully!',

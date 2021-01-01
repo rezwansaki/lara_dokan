@@ -41,7 +41,7 @@
   <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-dark bg-info">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -75,7 +75,7 @@
             <i class="far fa-user"></i>
           </a>
 
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right navbar-dark bg-info p-0">
             @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-2 sm:block">
               @auth
@@ -234,7 +234,7 @@
             <!-- Salary Navigation -->
             <li class="nav-item has-treeview menu-open">
               <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-user"></i>
+                <i class="nav-icon fas fa-dollar-sign"></i>
                 <p>
                   Salary
                   <i class="right fas fa-angle-left"></i>
@@ -243,7 +243,7 @@
               <ul class="nav nav-treeview text-sm">
                 <li class="nav-item">
                   <a href="{{url('/employee/salarydetails')}}" class="nav-link pl-4">
-                    <i class="nav-icon fas fa-users"></i>
+                    <i class="nav-icon fas fa-dollar-sign"></i>
                     <p>Salary Details</p>
                   </a>
                 </li>
@@ -279,13 +279,16 @@
       @yield('content')
     </div>
     <!-- /.content-wrapper -->
+
     <footer class="main-footer">
       <!-- To the right -->
-      <div class="float-right d-none d-sm-inline">
-        Thanks to AdminLTE <small>(Bootstrap Admin Template)</small>
+      <div class="float-right text-sm">
+        Thanks to AdminLTE
       </div>
       <!-- Default to the left -->
-      <strong>Copyright &copy; 2020 Dokan</a>.</strong> All rights reserved.
+      <div class="text-sm text-dark">
+        <strong>Copyright &copy; 2020 Dokan</a>.</strong> All rights reserved.
+      </div>
     </footer>
 
     <!-- Control Sidebar -->

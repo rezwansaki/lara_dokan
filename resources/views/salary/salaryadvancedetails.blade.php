@@ -65,9 +65,7 @@
                         <td class="text-center">{{$salary->reason}}</td>
                         <td class="text-center">{{$salary->loan}}</td>
                         <td>
-                            <a href="/employee/salaryloanpay/{{$salary->id}}" class="btn btn-info btn-xs">Pay</a>
-                            <a href="#" class="btn btn-primary btn-xs">Edit</a>
-                            <a href="#" class="btn btn-danger btn-xs" id="delete">Delete</a>
+                            <a href="/employee/salaryloanpay/{{$salary->id}}" class="btn btn-info btn-xs">Pay Now</a>
                         </td>
                     </tr>
                     @endforeach

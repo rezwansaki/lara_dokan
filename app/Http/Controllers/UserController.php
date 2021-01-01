@@ -231,6 +231,7 @@ class UserController extends Controller
         }
     }
 
+    //after login user can see only his/her profile
     public function userProfile()
     {
         try {
@@ -239,7 +240,20 @@ class UserController extends Controller
         } catch (\Exception $e) {
             //return $e->getMessage();
         }
-    }
+    } // /after login user can see only his/her profile
+
+    //admin can view all user's profile
+    public function userProfileAll($id)
+    {
+        try {
+            $user_profile = User::find($id);
+            return $user_profile;
+            //return view('user.userprofile', compact('user_profile'));
+        } catch (\Exception $e) {
+            //return $e->getMessage();
+        }
+    } // /admin can view all user's profile
+
     public function searchUser(Request $request)
     {
         $searchtype = $request->publication_id; //such as id, name, contact, email, created_at, role etc 

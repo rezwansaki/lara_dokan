@@ -73,7 +73,7 @@
                     @foreach($all_users as $user)
                     <tr>
                         <td class="text-center">{{$user->id}}</td>
-                        <td>{{$user->name}}</td>
+                        <td><a href="/user/profile/{{$user->id}}">{{$user->name}}</a></td>
                         <td>{{$user->contact}}</td>
                         <td>{{$user->email}}</td>
                         <td>

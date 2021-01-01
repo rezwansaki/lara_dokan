@@ -39,7 +39,7 @@
                     @foreach($all_customers as $customer)
                     <tr>
                         <td class="text-center">{{$customer->id}}</td>
-                        <td><a href="{{$customer->id}}">{{$customer->name}}</a></td>
+                        <td>{{$customer->name}}</td>
                         <td>{{$customer->contact}}</td>
                         <td>{{$customer->email}}</td>
                         <td>

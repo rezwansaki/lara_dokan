@@ -32,7 +32,10 @@ Route::post('/user/update/{id}', [UserController::class, 'userUpdate'])->middlew
 Route::get('/user/delete/{id}', [UserController::class, 'userDelete'])->middleware('auth');
 Route::get('/usercreate', [UserController::class, 'userCreate'])->middleware('auth');
 Route::post('/userstore', [UserController::class, 'userStore'])->middleware('auth');
-Route::get('/user/profile', [UserController::class, 'userProfile'])->middleware('auth');
+
+//User profile 
+Route::get('/user/profile', [UserController::class, 'userProfile'])->middleware('auth'); //after login user can see only his/her profile
+Route::get('/user/profile/{id}', [UserController::class, 'userProfileAll'])->middleware('auth'); //admin can view all user's profile
 
 //Employee 
 Route::get('/user/employee/create', [EmployeeController::class, 'createEmployees'])->middleware('auth');

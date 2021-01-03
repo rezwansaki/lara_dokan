@@ -40,8 +40,12 @@
                                 $monthNum = $salary->month;
                                 $dateObj = DateTime::createFromFormat('!m', $monthNum);
                                 $monthName = $dateObj->format('F');
+                                $month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                                $month_name = $monthName;
+                                $month_id_from_array = array_search($month_name, $month, true);
+                                $month_id_real = $month_id_from_array + 1;
                                 @endphp
-                                <option hidden value="{{ $monthName }}" selected>{{ $monthName }}</option>
+                                <option hidden value="{{ $month_id_real }}" selected>{{ $monthName }}</option>
                                 <option value="1">January</option>
                                 <option value="2">February</option>
                                 <option value="3">March</option>

@@ -32,10 +32,16 @@
                                 @endforeach
                             </select>
                         </div>
+                        @php
+                        $month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                        $month_name = $previous_month;
+                        $month_id_from_array = array_search($month_name, $month, true);
+                        $month_id_real = $month_id_from_array + 1;
+                        @endphp
                         <label for="publication_id">Select Month</label>
                         <div class="form-group">
                             <select name="month" id="month" class="form-control input-sm">
-                                <option hidden value="1" selected>{{ $previous_month }}</option>
+                                <option hidden value="{{$month_id_real}}" selected>{{ $previous_month }}</option>
                                 <option value="1">January</option>
                                 <option value="2">February</option>
                                 <option value="3">March</option>
@@ -53,7 +59,7 @@
                         <label for="publication_id">Select Year</label>
                         <div class="form-group">
                             <select name="year" id="year" class="form-control input-sm">
-                                <option hidden value="2020" selected>{{ $current_year }}</option>
+                                <option hidden value="{{ $current_year }}" selected>{{ $current_year }}</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
                                 <option value="2022">2022</option>

@@ -73,7 +73,7 @@
                     @foreach($all_users as $user)
                     <tr>
                         <td class="text-center">{{$user->id}}</td>
-                        <td><a href="/user/profile/{{$user->id}}">{{$user->name}}</a></td>
+                        <td>{{$user->name}}</td>
                         <td>{{$user->contact}}</td>
                         <td>{{$user->email}}</td>
                         <td>
@@ -108,8 +108,9 @@
                         <td>{{date_format($user->created_at,'d-M-Y')}}</td>
                         <td>{{date_format($user->updated_at,'d-M-Y')}}</td>
                         <td>
-                            <a href="/user/edit/{{$user->id}}" class="btn btn-primary btn-xs btn-block">Edit</a>
-                            <a href="/user/delete/{{$user->id}}" class="btn btn-danger btn-xs btn-block" id="delete">Delete</a>
+                            <a href="/user/edit/{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Edit Data" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i></a>
+                            <a href="/user/delete/{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Delete Data" class="btn btn-danger btn-xs" id="delete"><i class="fas fa-trash-alt"></i></a>
+                            <a href="/user/profile/{{$user->id}}" data-toggle="tooltip" data-placement="top" title="View Profile" class="btn btn-info btn-xs"><i class="fas fa-eye"></i></a>
                         </td>
                     </tr>
                     @endforeach

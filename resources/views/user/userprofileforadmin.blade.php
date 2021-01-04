@@ -6,7 +6,7 @@
     <div class="col-sm-12">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h5 class="m-0">User Profile of <strong>{{$auth_user->name}}</strong></h5>
+                <h5 class="m-0">User Profile of <strong>{{$user_profile->name}}</strong></h5>
             </div>
             <div class="card-body">
                 <!-- Main content -->
@@ -19,7 +19,7 @@
                                 <div class="card card-primary card-outline">
                                     <div class="card-body box-profile">
                                         <div class="text-center">
-                                            @if(Auth::user()->id == 1)
+                                            @if($user_profile->id == 1)
                                             <img class="profile-user-img img-fluid img-circle" src="{{asset('adminlte')}}/dist/img/avator_superadmin.png" alt="User profile picture">
                                             @elseif($employee_profile == 'null')
                                             <img class="profile-user-img img-fluid img-circle" src="{{asset('adminlte')}}/dist/img/member_avator.png" alt="User profile picture">
@@ -31,9 +31,9 @@
                                         </div>
                                         <p class="text-muted text-center">
                                             @if (Auth::check())
-                                        <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
+                                        <h3 class="profile-username text-center">{{$user_profile->name}}</h3>
                                         <p class="text-muted text-center">
-                                            @foreach(Auth::user()->getRoleNames() as $userrole)
+                                            @foreach($user_profile->getRoleNames() as $userrole)
                                             @if($userrole == 'superadmin')
                                             <span class="right badge badge-pill badge-danger items-center">
                                                 {{ $userrole }}
@@ -67,14 +67,14 @@
                                         </p>
                                         <ul class="list-group list-group-unbordered mb-3">
                                             <li class="list-group-item text-sm">
-                                                <b>User ID: </b> <a class="float-right">{{Auth::user()->id}}</a>
+                                                <b>User ID: </b> <a class="float-right">{{$user_profile->id}}</a>
                                             </li>
                                             <li class="list-group-item text-sm">
                                                 <b>Email: </b>
-                                                <div class="float-right">{{Auth::user()->email}}</div>
+                                                <div class="float-right">{{$user_profile->email}}</div>
                                             </li>
                                             <li class="list-group-item text-sm">
-                                                <b>Created: </b> <a class="float-right">{{date('d-M-Y', strtotime(Auth::user()->created_at))}}</a>
+                                                <b>Created: </b> <a class="float-right">{{date('d-M-Y', strtotime($user_profile->created_at))}}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -90,11 +90,11 @@
                                     <!-- /.card-header -->
                                     <div class="card-body">
                                         <strong><i class="fas fa-map-marker-alt mr-1"></i> Contact</strong>
-                                        <p class="text-muted">{{Auth::user()->contact}}</p>
+                                        <p class="text-muted">{{$user_profile->contact}}</p>
                                         <hr>
                                         <strong><i class="fas fa-users-cog mr-1"></i> Role</strong>
                                         <p class="text-muted">
-                                            @foreach(Auth::user()->getRoleNames() as $userrole)
+                                            @foreach($user_profile->getRoleNames() as $userrole)
                                             <span class="tag badge badge-pill badge-secondary">
                                                 {{ $userrole }}
                                             </span>
@@ -121,7 +121,7 @@
                                                 <!-- Post -->
                                                 <div class="post">
                                                     <div class="user-block">
-                                                        @if(Auth::user()->id == 1)
+                                                        @if($user_profile->id == 1)
                                                         <img class="profile-user-img img-fluid img-circle" src="{{asset('adminlte')}}/dist/img/avator_superadmin.png" alt="User profile picture">
                                                         @elseif($employee_profile == 'null')
                                                         <img class="profile-user-img img-fluid img-circle" src="{{asset('adminlte')}}/dist/img/member_avator.png" alt="User profile picture">
@@ -131,7 +131,7 @@
                                                         <img class="profile-user-img img-fluid img-circle" src="{{asset('adminlte')}}/dist/img/avatar_female.png" alt="User profile picture">
                                                         @endif
                                                         <span class="username">
-                                                            <a href="#">{{Auth::user()->name}}</a>
+                                                            <a href="#">{{$user_profile->name}}</a>
                                                             <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
                                                         </span>
                                                         <span class="description">Shared publicly - 7:30 PM today</span>

@@ -134,7 +134,7 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
             @if (Auth::check())
-            <img src="{{asset('adminlte')}}/dist/img/avatar_male.png" class="img-circle img-bordered-sm elevation-2" alt="User Image">
+            <img class="profile-user-img img-fluid img-circle" src="{{asset('adminlte')}}/dist/img/member_avator.png" alt="User profile picture">
             @else
             <img src="{{asset('adminlte')}}/dist/img/avator_guest.jpg" class="img-circle img-bordered-sm elevation-2" alt="User Image">
             @endif
@@ -424,6 +424,13 @@
     });
   </script>
   <!-- /Nav link highlight after click -->
+  <!-- Tooltips -->
+  <script>
+    $(function() {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+  <!-- /Tooltips -->
   <!-- /Extra Scripts and CSS Codes -->
 </body>
 

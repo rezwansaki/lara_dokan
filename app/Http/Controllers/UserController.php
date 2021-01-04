@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
@@ -236,7 +237,13 @@ class UserController extends Controller
     {
         try {
             $auth_user = Auth::user();
-            return view('user.userprofile');
+            $employee_profile = Employee::where('user_id', $auth_user->id)->get()->first();
+            if (!$employee_profile) {
+                $employee_profile = 'null';
+                return view('user.userprofile', compact('auth_user', 'employee_profile'));
+            } else {
+                return view('user.userprofile', compact('auth_user', 'employee_profile'));
+            }
         } catch (\Exception $e) {
             //return $e->getMessage();
         }
@@ -247,7 +254,13 @@ class UserController extends Controller
     {
         try {
             $user_profile = User::find($id);
-            return $user_profile;
+            $employee_profile = Employee::where('user_id', $user_profile->id)->get()->first();
+            if (!$employee_profile) {
+                $employee_profile = 'null';
+                return view('user.userprofileforadmin', compact('user_profile', 'employee_profile'));
+            } else {
+                return view('user.userprofileforadmin', compact('user_profile', 'employee_profile'));
+            }
             //return view('user.userprofile', compact('user_profile'));
         } catch (\Exception $e) {
             //return $e->getMessage();

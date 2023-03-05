@@ -268,6 +268,34 @@
               </ul>
             </li>
             <!-- /Salary navigation -->
+
+             <!-- Product Navigation -->
+             <li class="nav-item has-treeview menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-regular fa-plus"></i>
+                <p>
+                  Product
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview text-sm">
+                <li class="nav-item">
+                  <a href="{{url('/product')}}" class="nav-link pl-4">
+                    <i class="nav-icon fas fa-regular fa-plus"></i>
+                    <p>Create Product</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview text-sm">
+                <li class="nav-item">
+                  <a href="{{url('/product/show')}}" class="nav-link pl-4">
+                    <i class="nav-icon fas fa-regular fa-plus"></i>
+                    <p>Show Products</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- /Salary navigation -->
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

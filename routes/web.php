@@ -8,7 +8,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ContactusController;
-
+use App\Http\Controllers\ProductController;
 
 //Welcome Route
 Route::get('/', [WelcomeController::class, 'index']);
@@ -69,3 +69,11 @@ Route::post('/employee/salaryadvance', [SalaryController::class, 'salaryAdvanceD
 Route::get('/employee/salaryadvancedetails', [SalaryController::class, 'salaryAdvanceDetails']);
 Route::get('/employee/salaryloanpay/{id}', [SalaryController::class, 'salaryLoanPay']); //load paid by the employee 
 Route::post('/employee/salaryloanpay/{id}', [SalaryController::class, 'salaryLoanPayDone']); //call the method of load paid by the employee 
+
+//Product
+Route::get('/product', [ProductController::class, 'index']); //show form to create product 
+Route::post('/product/store', [ProductController::class, 'storeProduct']); //store data to the product table 
+Route::get('/product/show', [ProductController::class, 'allProducts']); //show all products
+Route::get('/product/productedit/{id}', [ProductController::class, 'productEdit']); //show form to create product  
+Route::post('/product/productupdate/{id}', [ProductController::class, 'productUpdate']); //call update for product 
+Route::get('/product/productdelete/{id}', [ProductController::class, 'productDelete']); //call update for product 

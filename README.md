@@ -1,6 +1,6 @@
 # Lara Dokan - Laravel 8 Project
 
-![Alt text](screenshot.png "Lara Dokan - Laravel 8 Project")
+![Alt text](screenshot.jpg "Lara Dokan - Laravel 8 Project")
 
 A simple shop management system for practice. It can help to run a small shop. Such as, paying the employees, managing the product, managing the stock, knowing the income and expenditure account, etc.
 

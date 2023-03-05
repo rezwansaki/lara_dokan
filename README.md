@@ -1,6 +1,8 @@
 # Lara Dokan - Laravel 8 Project
 
-A simple shop management system. It can help to run a small shop. Such as, paying the employees, managing the product, managing the stock, knowing the income and expenditure account, etc. It is an offline project. Only accounts can be created online and products can be viewed but not purchased. The member will be the default user role after creating the account.
+![ Lara Dokan - Laravel 8 Project](/screenshot.png "Lara Dokan - Laravel 8 Project")
+
+A simple shop management system for practice. It can help to run a small shop. Such as, paying the employees, managing the product, managing the stock, knowing the income and expenditure account, etc.
 
 ## Instruction:
 

@@ -59,13 +59,17 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <div><b>Sale ID: </b> {{$invoice_id_max}}</div>
+                    <div><b>Sale/Invoice ID: </b> {{$invoice_id_max}}</div>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="form-group">
+                {{-- <div class="form-group">
+                   <form action="{{url('/sales/addCustomerWithASingleSale')}}" method="post">
+                    @csrf
                     <input type="text" name="customer_id" class="form-control" id="customer_id" placeholder="customer_id">
-                </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                   </form>
+                </div> --}}
             </div>
             <div class="col-sm-4">
                 <div><b>Date: </b> {{ date('d-F-Y')}}</div>
@@ -90,7 +94,8 @@
                 <td>{{$sale->sale_quantity}}</td>
                 <td>{{$sale->price}}</td>
                 <td>
-                    <i class="fas fa-edit"></i> <i class="fas fa-trash-alt"></i>
+                    {{-- <i class="fas fa-edit"></i> --}}
+                    <a href="/sales/deletesale/{{$sale->id}}" class="btn btn-danger btn-xs" id="delete"><i class="fas fa-trash"></i></a>
                 </td>
               </tr>
               @endforeach

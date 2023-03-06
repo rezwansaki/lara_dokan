@@ -30,7 +30,6 @@ class SaleController extends Controller
         }
     } //index
 
-
     //new sales - when click the 'New Sale' button 
     public function newSale()
     {
@@ -94,4 +93,29 @@ class SaleController extends Controller
             return redirect()->back()->with($notification);
         }
     } //add sale
+
+    //product delete 
+    public function deleteSale($id)
+    {
+        $auth_user = Auth::user();
+        if ($auth_user->hasRole(['superadmin', 'admin'])) {
+            $sale = Sales::find($id);
+            $sale->delete();
+            //Toaster Message 
+            $notification = array(
+                'message' => 'Delete Successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        } else {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+    } //product delete 
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
 
 //Welcome Route
 Route::get('/', [WelcomeController::class, 'index']);
@@ -77,3 +78,9 @@ Route::get('/product/show', [ProductController::class, 'allProducts']); //show a
 Route::get('/product/productedit/{id}', [ProductController::class, 'productEdit']); //show form to create product  
 Route::post('/product/productupdate/{id}', [ProductController::class, 'productUpdate']); //call update for product 
 Route::get('/product/productdelete/{id}', [ProductController::class, 'productDelete']); //call update for product 
+
+//Sales and ePOS 
+Route::get('/sales/epos', [SaleController::class, 'index']); //sale home page 
+Route::post('/sales/addsale', [SaleController::class, 'addSale']); //sale home page 
+Route::get('/sales/showsale', [SaleController::class, 'showSale']); //show sale for a single customer by sale id
+Route::get('/sales/newsale', [SaleController::class, 'newSale']); //show sale for a single customer by sale id

@@ -185,7 +185,7 @@
 
             <!-- User Navigation -->
             <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
                   User
@@ -233,7 +233,7 @@
             <!-- /user navigation -->
             <!-- Salary Navigation -->
             <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-dollar-sign"></i>
                 <p>
                   Salary
@@ -271,7 +271,7 @@
 
              <!-- Product Navigation -->
              <li class="nav-item has-treeview menu-open">
-              <a href="#" class="nav-link active">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-regular fa-plus"></i>
                 <p>
                   Product
@@ -295,7 +295,27 @@
                 </li>
               </ul>
             </li>
-            <!-- /Salary navigation -->
+            <!-- /Product navigation -->
+
+             <!-- Sales Navigation -->
+             <li class="nav-item has-treeview menu-open">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-regular fa-plus"></i>
+                <p>
+                  Sales
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview text-sm">
+                <li class="nav-item">
+                  <a href="{{url('/sales/epos')}}" class="nav-link pl-4">
+                    <i class="nav-icon fas fa-regular fa-plus"></i>
+                    <p>ePOS</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- /Sales navigation -->
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -40,6 +40,7 @@ then create a employee -
     <li>salesman - only can access create and read of the 'product sell' and also can access Home, Contact, Register, Login.</li>
     <li>member - only can access Home, Contact, Register, Login. Member means customer.</li>
 </ul>
+Note: For now, no user role other than superadmin, admin will work.
 
 ### About SuperAdmin:
 

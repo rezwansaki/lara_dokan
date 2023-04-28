@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function PHPUnit\Framework\isEmpty;
 
+use PDF; //or 'use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;'
+
 class SaleController extends Controller
 {
     //index 
@@ -118,4 +120,11 @@ class SaleController extends Controller
             return redirect()->back()->with($notification);
         }
     } //product delete 
+
+    // to generate invoice 
+    public function gen_invoice()
+    {
+        $pdf = PDF::loadView('sale.invoice'); //load html file for converting a pdf file 
+        return $pdf->stream('invoice.pdf'); //open pdf in browser
+    }
 }

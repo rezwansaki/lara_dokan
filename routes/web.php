@@ -85,3 +85,4 @@ Route::post('/sales/addsale', [SaleController::class, 'addSale']); //sale home p
 Route::get('/sales/showsale', [SaleController::class, 'showSale']); //show sale for a single customer by sale id
 Route::get('/sales/newsale', [SaleController::class, 'newSale']); //show sale for a single customer by sale id
 Route::get('/sales/deletesale/{id}', [SaleController::class, 'deleteSale']); //delete item from sales for a single customer
+Route::get('/sales/gen-invoice', [SaleController::class, 'gen_invoice'])->name('gen-invoice'); //generate invoice

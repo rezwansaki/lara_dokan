@@ -18,7 +18,7 @@
     <div class="row">
         {{-- Left side --}}
       <div class="col-4">
-        <a href="{{ url('/sales/newsale') }}" type="button" class="btn btn-success">New Sale</a>
+        <a href="{{ url('/sales/newsale') }}" type="button" class="btn btn-sm btn-success">New Sale</a>
        <div class="container pr-5">
          <!-- form start -->
          <form role="form" id="quickForm" action="{{url('/sales/addsale')}}" method="post">
@@ -41,21 +41,24 @@
                 <input type="text" name="quantity" class="form-control" id="quantity" placeholder="quantity" required>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-sm btn-primary">Add</button>
             </div>
         </form>
         <!-- /form end -->
        </div>
+       
+       {{-- to generate invoice --}}
+       <a href="{{ route('gen-invoice')}}" type="submit" class="btn btn-sm btn-info">Generate Invoice</a>
       </div>
       {{-- Left side --}}
 
-      {{-- Right side --}}
+      {{-- Invoice - Right side --}}
       @php
       $invoice_id_max = App\Models\Invoice::all()->max('id');
       $sales = App\Models\Sales::orderBy('id','asc')->where('sale_id',$invoice_id_max)->get();
       $grand_total_price = App\Models\Sales::where('sale_id',$invoice_id_max)->sum('price');
       @endphp
-      <div class="col-8">
+      <div class="col-8" id="invoice">
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
@@ -111,7 +114,7 @@
             </tfoot>
           </table>
       </div>
-       {{-- Right side --}}
+       {{-- Invoice - Right side --}}
     </div>
   </div>
 

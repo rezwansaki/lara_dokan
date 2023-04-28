@@ -80,9 +80,9 @@
               <tr>
                 <th scope="col">P_ID</th>
                 <th scope="col">Product</th>
-                <th scope="col">Rate</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
+                <th scope="col" style="text-align: right;">Rate</th>
+                <th scope="col" style="text-align: center;">Quantity</th>
+                <th scope="col" style="text-align: right;">Price</th>
               </tr>
             </thead>
             <tbody>
@@ -90,9 +90,9 @@
               <tr>
                 <td>{{$sale->product_id}}</td>
                 <td>{{$sale->product_name}}</td>
-                <td>{{$sale->product_rate}}</td>
-                <td>{{$sale->sale_quantity}}</td>
-                <td>{{$sale->price}}</td>
+                <td style="text-align: right;">{{ number_format((float)$sale->product_rate, 2, '.', '')}}</td>
+                <td style="text-align: center;">{{$sale->sale_quantity}}</td>
+                <td style="text-align: right;">{{ number_format((float)$sale->price, 2, '.', '')}}</td>
                 <td>
                     {{-- <i class="fas fa-edit"></i> --}}
                     <a href="/sales/deletesale/{{$sale->id}}" class="btn btn-danger btn-xs" id="delete"><i class="fas fa-trash"></i></a>
@@ -106,7 +106,7 @@
                     <td></td>
                     <td></td>
                     <td><b>G.Total</b></td>
-                    <td><b>{{$grand_total_price}}</b></td>
+                    <td style="text-align: right;"><b>{{ number_format((float)$grand_total_price, 2, '.', '')}}</b></td>
                 </tr>
             </tfoot>
           </table>

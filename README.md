@@ -33,8 +33,8 @@ then create a employee -
 ### User Role:
 
 <ul>
-    <li>superadmin - can access everything.</li>
-    <li>admin - as like superadmin. But admin can't access install and recoversuperadmin route.</li>
+    <li>superadmin - Default user role, can access everything. It can't be removed from the app.</li>
+    <li>admin - As like superadmin.</li>
     <li>editor -  only can full access of product and sales section.
 </li>
     <li>salesman - only can access (create, read) of ePOS (sales->ePOS) section.

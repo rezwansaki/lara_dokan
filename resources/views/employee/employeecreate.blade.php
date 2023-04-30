@@ -30,9 +30,11 @@
                 <div class="card-body">
                     <div class="form-group">
                         @php
-                        $total_employees = App\Models\User::whereHas('roles', function ($q) {
-                        $q->whereIn('name', ['admin', 'editor', 'salesman']);
-                        })->get();
+                        $total_employees = \DB::table('users AS t1')
+                        ->select('t1.id', 't1.name')
+                        ->leftJoin('employees AS t2','t2.user_id','=','t1.id')
+                        ->whereNull('t2.user_id')
+                        ->get();
                         @endphp
                         <label for="user_id">User_ID</label> </br>
                         <small class="m-0 text-black">(user_id - user_name)</small>

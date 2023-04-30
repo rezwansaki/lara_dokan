@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -62,7 +63,6 @@ class UserController extends Controller
                 $user_contact = $request->usercontact;
                 $user_email = $request->useremail;
                 $user_password = Hash::make($request->userpassword);
-
 
                 $user = new User;
                 $user->name = $user_name;

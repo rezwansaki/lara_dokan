@@ -38,7 +38,7 @@ class SaleController extends Controller
         $auth_user = Auth::user();
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor', 'salesman'])) {
             $invoice_id_max = Invoice::all()->max('id');
-            $sale = Sales::where('sale_id', $invoice_id_max)->get();
+            $sale = Sales::where('sale_id', $invoice_id_max)->get(); //sale_id contains id of invoice table
             if (!$sale->isEmpty()) {
                 $invoice = new Invoice;
                 $invoice->save();

@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function index()
     {
         $auth_user = Auth::user();
-        if ($auth_user->hasRole(['superadmin', 'admin'])) {
+        if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             return view('product.productcreate');
         } else {
             //If not superadmin 
@@ -31,7 +31,7 @@ class ProductController extends Controller
     {
         try {
             $auth_user = Auth::user();
-            if ($auth_user->hasRole(['superadmin', 'admin'])) { //authenticated user can access this  
+            if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) { //authenticated user can access this  
                 $product_name = $request->productname;
                 $product_quantity = $request->quantity;
                 $product_rate = $request->rate;
@@ -86,7 +86,7 @@ class ProductController extends Controller
     public function allProducts()
     {
         $auth_user = Auth::user();
-        if ($auth_user->hasRole(['superadmin', 'admin'])) {
+        if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             $product_details = Product::orderBy('id', 'desc')->paginate(8);
             return view('product.productdetails', compact('product_details'));
         } else {
@@ -105,7 +105,7 @@ class ProductController extends Controller
     public function productEdit($id)
     {
         $auth_user = Auth::user();
-        if ($auth_user->hasRole(['superadmin', 'admin'])) {
+        if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             $product = Product::find($id);
             return view('product.productedit', compact('product'));
         } else {
@@ -123,31 +123,43 @@ class ProductController extends Controller
     //product update
     public function productUpdate(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product_name = $request->productname;
-        $product_quantity = $request->quantity;
-        $product_rate = $request->rate;
+        $auth_user = Auth::user();
+        if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
+            $product = Product::find($id);
+            $product_name = $request->productname;
+            $product_quantity = $request->quantity;
+            $product_rate = $request->rate;
 
-        $product->name = $product_name;
-        $product->quantity = $product_quantity;
-        $product->rate = $product_rate;
+            $product->name = $product_name;
+            $product->quantity = $product_quantity;
+            $product->rate = $product_rate;
 
-        $product->save();
+            $product->save();
 
-        //Toaster Message show, when user create fail
-        $notification = array(
-            'message' => 'Product has been updated successfully!',
-            'alert-type' => 'success'
-        );
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'Product has been updated successfully!',
+                'alert-type' => 'success'
+            );
 
-        return redirect('/product/show')->with($notification);
+            return redirect('/product/show')->with($notification);
+        } else {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
     } //product update
 
     //product delete 
     public function productDelete($id)
     {
         $auth_user = Auth::user();
-        if ($auth_user->hasRole(['superadmin', 'admin'])) {
+        if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             $salary = Product::find($id);
             $salary->delete();
             //Toaster Message 

@@ -2,7 +2,7 @@
 
 ![Alt text](screenshot.jpg "Lara Dokan - Laravel 8 Project")
 
-A simple shop management system for practice. It can help to run a small shop. Such as, paying the employees, managing the product, managing the stock, knowing the income and expenditure account, etc.
+A simple shop management system for practice. It can help to run a small shop. Such as, paying the employees, managing the product, ePOS etc.
 
 ## Instruction:
 
@@ -35,12 +35,10 @@ then create a employee -
 <ul>
     <li>superadmin - Default user role, can access everything. It can't be removed from the app.</li>
     <li>admin - As like superadmin.</li>
-    <li>editor -  only can full access of product and sales section.
-</li>
+    <li>editor -  only can full access of product and sales section.</li>
     <li>salesman - only can access (create, read) of ePOS (sales->ePOS) section.
     <li>member - only can access Home, Contact, Register, Login. Member means customer.</li>
 </ul>
-Note: For now, no user role other than superadmin, admin will work.
 
 ### About SuperAdmin:
 
@@ -62,7 +60,7 @@ Note: For now, no user role other than superadmin, admin will work.
 
 ### Project Version:
 
-1.0.6
+1.0.7
 
 ### Start Date:
 

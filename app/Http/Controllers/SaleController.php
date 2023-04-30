@@ -18,7 +18,7 @@ class SaleController extends Controller
     public function index()
     {
         $auth_user = Auth::user();
-        if ($auth_user->hasRole(['superadmin', 'admin'])) {
+        if ($auth_user->hasRole(['superadmin', 'admin', 'editor', 'salesman'])) {
             return view('sale.sale');
         } else {
             //If not superadmin 
@@ -35,20 +35,32 @@ class SaleController extends Controller
     //new sales - when click the 'New Sale' button 
     public function newSale()
     {
-        $invoice_id_max = Invoice::all()->max('id');
-        $sale = Sales::where('sale_id', $invoice_id_max)->get();
-        if (!$sale->isEmpty()) {
-            $invoice = new Invoice;
-            $invoice->save();
-            return redirect()->back();
+        $auth_user = Auth::user();
+        if ($auth_user->hasRole(['superadmin', 'admin', 'editor', 'salesman'])) {
+            $invoice_id_max = Invoice::all()->max('id');
+            $sale = Sales::where('sale_id', $invoice_id_max)->get();
+            if (!$sale->isEmpty()) {
+                $invoice = new Invoice;
+                $invoice->save();
+                return redirect()->back();
+            } else {
+                //Toaster Message 
+                $notification = array(
+                    'message' => 'Please add sale item!',
+                    'alert-type' => 'error'
+                );
+
+                return redirect('/sales/epos')->with($notification);
+            }
         } else {
-            //Toaster Message 
+            //If not superadmin 
+            //Toaster Message show, when user create fail
             $notification = array(
-                'message' => 'Please add sale item!',
+                'message' => 'This section is not for you!',
                 'alert-type' => 'error'
             );
 
-            return redirect('/sales/epos')->with($notification);
+            return redirect()->back()->with($notification);
         }
     } //new sales
 
@@ -59,7 +71,7 @@ class SaleController extends Controller
         $newSaleId = $invoice_id_max;
 
         $auth_user = Auth::user();
-        if ($auth_user->hasRole(['superadmin', 'admin'])) { //authenticated user can access this  
+        if ($auth_user->hasRole(['superadmin', 'admin', 'editor', 'salesman'])) { //authenticated user can access this  
             $product_id = $request->product_id;
             $product_name = Product::find($product_id)->name;
             $sale_id = $newSaleId;
@@ -100,7 +112,7 @@ class SaleController extends Controller
     public function deleteSale($id)
     {
         $auth_user = Auth::user();
-        if ($auth_user->hasRole(['superadmin', 'admin'])) {
+        if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             $sale = Sales::find($id);
             $sale->delete();
             //Toaster Message 
@@ -124,7 +136,19 @@ class SaleController extends Controller
     // to generate invoice 
     public function gen_invoice()
     {
-        $pdf = PDF::loadView('sale.invoice'); //load html file for converting a pdf file 
-        return $pdf->stream('invoice.pdf'); //open pdf in browser
+        $auth_user = Auth::user();
+        if ($auth_user->hasRole(['superadmin', 'admin', 'editor', 'salesman'])) {
+            $pdf = PDF::loadView('sale.invoice'); //load html file for converting a pdf file 
+            return $pdf->stream('invoice.pdf'); //open pdf in browser
+        } else {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
     }
 }

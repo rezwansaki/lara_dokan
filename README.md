@@ -34,10 +34,10 @@ then create a employee -
 
 <ul>
     <li>superadmin - can access everything.</li>
-    <li>admin - as like superadmin.</li>
-    <li>editor -  only can access create, read and update of the 'product sell', but not delete. 
+    <li>admin - as like superadmin. But admin can't access install and recoversuperadmin route.</li>
+    <li>editor -  only can full access of product and sales section.
 </li>
-    <li>salesman - only can access create and read of the 'product sell' and also can access Home, Contact, Register, Login.</li>
+    <li>salesman - only can access (create, read) of ePOS (sales->ePOS) section.
     <li>member - only can access Home, Contact, Register, Login. Member means customer.</li>
 </ul>
 Note: For now, no user role other than superadmin, admin will work.
@@ -62,7 +62,7 @@ Note: For now, no user role other than superadmin, admin will work.
 
 ### Project Version:
 
-1.0.3
+1.0.6
 
 ### Start Date:
 
@@ -70,7 +70,7 @@ Note: For now, no user role other than superadmin, admin will work.
 
 ### Last Update:
 
-29-April-2023
+30-April-2023
 
 ### Developed by:
 

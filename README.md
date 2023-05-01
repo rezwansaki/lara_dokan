@@ -67,10 +67,11 @@ The work of the database must be done through migrate, but it cannot be directly
 2. "spatie/laravel-permission": "^3.18" - for user role permission. <br>
 3. "laravel/breeze": "^1.0" - for authentication.
 
-<hr>
-### Problems: 
+### Problems:
+
 There are some issues that have not been fixed. </br>
 Such as: </br>
+
 <ul>
 <li>1. Problem in dashboard (left side menus are not arranged properly and clicking on one or reloading the browser opens all menus and2. At the same time, it seems that accessing the software from multiple PCs may cause problems with Invoice ID and other problems as well.</li>
 <li>2. At the same time, it seems that accessing the software from multiple PCs may cause problems with Invoice ID and other problems as well.</li>

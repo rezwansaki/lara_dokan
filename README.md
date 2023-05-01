@@ -29,6 +29,7 @@ then create a employee -
     <li>4. Select 'User_ID' and give other information</li>
     <li>5. Click the button 'Create Employee'.</li>
 </ul>
+Note: Deleting Employee will also delete from User table.
 
 ### User Role:
 
@@ -56,6 +57,31 @@ then create a employee -
 'timezone' => 'Asia/Dhaka',
 </ul>
 
+### Database that must obey:
+
+The work of the database must be done through migrate, but it cannot be directly modified by going to the database from database server.
+
+### Extra Packages used:
+
+1. "carlos-meneses/laravel-mpdf": "^2.1" - for generate HTML to PDF. <br>
+2. "spatie/laravel-permission": "^3.18" - for user role permission. <br>
+3. "laravel/breeze": "^1.0" - for authentication.
+
+<hr>
+### Problems: 
+There are some issues that have not been fixed. </br>
+Such as: </br>
+<ul>
+<li>1. Problem in dashboard (left side menus are not arranged properly and clicking on one or reloading the browser opens all menus and2. At the same time, it seems that accessing the software from multiple PCs may cause problems with Invoice ID and other problems as well.</li>
+<li>2. At the same time, it seems that accessing the software from multiple PCs may cause problems with Invoice ID and other problems as well.</li>
+<li>3. At the very beginning there are installation methods that can be accessed after installation if desired, and the superadmin recover method can also be accessed later. These can cause problems.</li>
+<li>4. There was no need for so much about the user. And besides, they also have problems, they are not perfect. Especially the payment of advance salary is not so good.</li>
+<li>5. Product table columns should have been done better.</li>
+<li>6. Data Input Validation method is not added, it should have been done. Adding validation is causing problems. And without adding validation, If wrong data entry shows a white page but no error.</li>
+<li>7. SuperAdmin can be edited by superadmin and admin, this can be a problem. Although the superadmin cannot be removed, it should have been made so that the superadmin cannot be edited in any way from the application.</li>
+<li>8. The project was developed for practice without proper planning so there are also problems with database design.</li>
+</ul>
+
 <hr>
 
 ### Project Version:
@@ -68,7 +94,7 @@ then create a employee -
 
 ### Last Update:
 
-30-April-2023
+01-May-2023
 
 ### Developed by:
 

@@ -9,7 +9,6 @@ use App\Models\Employee;
 use App\Models\SalaryAdvance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
 class SalaryController extends Controller
@@ -18,6 +17,20 @@ class SalaryController extends Controller
     public function index()
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $all_employees = Employee::all();
             $previous_month = date('F', strtotime("last day of previous month")); //to show the last day of the previous month
@@ -39,6 +52,20 @@ class SalaryController extends Controller
     public function salaryProvide(Request $request)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $employee_id = $request->employee;
             $month = $request->month;
@@ -93,6 +120,20 @@ class SalaryController extends Controller
     public function salaryDetails()
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $salary_details = Salary::orderBy('id', 'desc')->paginate(8);
             $total_salary_paid = (float)Salary::all()->sum('salary');
@@ -113,6 +154,20 @@ class SalaryController extends Controller
     public function salaryEdit($id)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $salary = Salary::find($id);
             $all_employees = Employee::all();
@@ -133,6 +188,20 @@ class SalaryController extends Controller
     public function salaryUpdate(Request $request, $id)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $employee_id = $request->employee;
             $month = $request->month;
@@ -187,6 +256,20 @@ class SalaryController extends Controller
     public function salaryDelete($id)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $salary = Salary::find($id);
             $salary->delete();
@@ -212,6 +295,20 @@ class SalaryController extends Controller
     public function salaryAdvance()
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $all_employees = Employee::all();
             return view('salary.salaryadvance', compact('all_employees'));
@@ -231,6 +328,20 @@ class SalaryController extends Controller
     public function salaryAdvanceDone(Request $request)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $emp_id = $request->employee;
             $employee = Employee::find($emp_id); //get all data of that employee 
@@ -280,6 +391,20 @@ class SalaryController extends Controller
     public function salaryAdvanceDetails()
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $salary_advance_details = SalaryAdvance::orderBy('id', 'desc')->paginate(8);
             $total_salary_advance_paid = (float)SalaryAdvance::all()->sum('salary_advance');
@@ -300,6 +425,20 @@ class SalaryController extends Controller
     public function salaryLoanPay($id)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $salary_advance = SalaryAdvance::find($id);
             return view('salary.salaryloanpay', compact('salary_advance'));
@@ -319,6 +458,20 @@ class SalaryController extends Controller
     public function salaryLoanPayDone(Request $request, $id)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin'])) {
             $today = date('d-F-Y', strtotime(now()));
             $salary_advance = SalaryAdvance::find($id);

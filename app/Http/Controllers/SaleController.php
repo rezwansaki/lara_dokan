@@ -18,6 +18,20 @@ class SaleController extends Controller
     public function index()
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor', 'salesman'])) {
             return view('sale.sale');
         } else {
@@ -36,6 +50,20 @@ class SaleController extends Controller
     public function newSale()
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor', 'salesman'])) {
             $invoice_id_max = Invoice::all()->max('id');
             $sale = Sales::where('sale_id', $invoice_id_max)->get(); //sale_id contains id of invoice table
@@ -71,6 +99,20 @@ class SaleController extends Controller
         $newSaleId = $invoice_id_max;
 
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor', 'salesman'])) { //authenticated user can access this  
             $product_id = $request->product_id;
             $product_name = Product::find($product_id)->name;
@@ -112,6 +154,20 @@ class SaleController extends Controller
     public function deleteSale($id)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             $sale = Sales::find($id);
             $sale->delete();
@@ -137,6 +193,20 @@ class SaleController extends Controller
     public function gen_invoice()
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor', 'salesman'])) {
             $pdf = PDF::loadView('sale.invoice'); //load html file for converting a pdf file 
             return $pdf->stream('invoice.pdf'); //open pdf in browser

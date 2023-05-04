@@ -12,6 +12,20 @@ class ProductController extends Controller
     public function index()
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             return view('product.productcreate');
         } else {
@@ -31,6 +45,20 @@ class ProductController extends Controller
     {
         try {
             $auth_user = Auth::user();
+
+            // if unauthenticated user try to access this section
+            if ($auth_user == '') {
+                //If not superadmin 
+                //Toaster Message show, when user create fail
+                $notification = array(
+                    'message' => 'This section is not for you! Please, login!',
+                    'alert-type' => 'error'
+                );
+
+                return redirect()->back()->with($notification);
+            }
+
+            // for authencicated user
             if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) { //authenticated user can access this  
                 $product_name = $request->productname;
                 $product_quantity = $request->quantity;
@@ -86,6 +114,20 @@ class ProductController extends Controller
     public function allProducts()
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             $product_details = Product::orderBy('id', 'desc')->paginate(8);
             return view('product.productdetails', compact('product_details'));
@@ -105,6 +147,20 @@ class ProductController extends Controller
     public function productEdit($id)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             $product = Product::find($id);
             return view('product.productedit', compact('product'));
@@ -124,6 +180,20 @@ class ProductController extends Controller
     public function productUpdate(Request $request, $id)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             $product = Product::find($id);
             $product_name = $request->productname;
@@ -159,6 +229,20 @@ class ProductController extends Controller
     public function productDelete($id)
     {
         $auth_user = Auth::user();
+
+        // if unauthenticated user try to access this section
+        if ($auth_user == '') {
+            //If not superadmin 
+            //Toaster Message show, when user create fail
+            $notification = array(
+                'message' => 'This section is not for you! Please, login!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        // for authencicated user
         if ($auth_user->hasRole(['superadmin', 'admin', 'editor'])) {
             $salary = Product::find($id);
             $salary->delete();
